@@ -1,7 +1,8 @@
 var http = require('http');
 var url = require('url');
 var feedzilla = require("./fz/feedzilla.js");
-
+var huffpoll = require("./huffpoll/huffpoll.js");
+var hacknews = require("./hackernews/hackernews.js");
 
 function onRequest(request, response) {
     console.log('started');
@@ -10,6 +11,10 @@ function onRequest(request, response) {
     if (pathname.indexOf('feedzilla') > -1){
         console.log('about to callback');
         feedzilla.makeFeedzillaRequest(pathname, myCallback);        
+    } else if (pathname.indexOf('huffpoll') > -1){
+        huffpoll.makeHuffPollRequest(pathname, myCallback);
+    } else if (pathname.indexOf('hackernews') > -1){
+        hacknews.makeHackerNewsRequest(pathname, myCallback);
     } else {
         console.log('not calling back');
         console.log(request.url);
