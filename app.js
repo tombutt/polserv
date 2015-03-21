@@ -6,7 +6,8 @@ var feedzilla = require("./fz/feedzilla.js");
 function onRequest(request, response) {
     console.log('started');
     var pathname = url.parse(request.url).pathname;
-    if (pathname == '/feedzilla'){
+    //if (pathname == '/feedzilla'){
+    if (pathname.indexOf('feedzilla') > -1){
         console.log('about to callback');
         feedzilla.makeFeedzillaRequest(pathname, myCallback);        
     } else {
@@ -24,5 +25,5 @@ function onRequest(request, response) {
     }
 }
 
-http.createServer(onRequest).listen(1337);
-console.log('Server running at http://127.0.0.1:1337/');
+http.createServer(onRequest).listen(8888);
+console.log('Server running at http://127.0.0.1:8888/');
