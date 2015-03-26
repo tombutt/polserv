@@ -3,6 +3,7 @@ var url = require('url');
 var feedzilla = require("./fz/feedzilla.js");
 var huffpoll = require("./huffpoll/huffpoll.js");
 var hacknews = require("./hackernews/hackernews.js");
+var govtrack = require("./govtrack/govtrack.js")
 
 function onRequest(request, response) {
     console.log('started');
@@ -15,6 +16,8 @@ function onRequest(request, response) {
         huffpoll.makeHuffPollRequest(pathname, myCallback);
     } else if (pathname.indexOf('hackernews') > -1){
         hacknews.makeHackerNewsRequest(pathname, myCallback);
+    } else if (pathname.indexOf('govtrack')> -1){
+        govtrack.makeGovTrackRequest(pathname, myCallback);
     } else {
         console.log('not calling back');
         console.log(request.url);
